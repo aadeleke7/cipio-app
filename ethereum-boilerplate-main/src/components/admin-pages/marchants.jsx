@@ -119,6 +119,7 @@ export default function MarchantsPage() {
             .map((items) => (
               <SingleMarchant key={items._id} singleMarchant={items} />
             ))
+            .reverse()
             .slice(oldPageNum, newPageNum)}
         </div>
       )}

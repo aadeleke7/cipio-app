@@ -27,6 +27,7 @@ const ConfirmationPage = () => {
     useContext(UserContext);
 
   useEffect(() => {
+    console.log(data);
     const airtim = +data.amount;
     setAirtime(user.role === "User" ? airtim * discount : airtim);
   }, [data, discount]);
@@ -56,6 +57,10 @@ const ConfirmationPage = () => {
     }`,
   };
 
+  const creditAmountBody = {
+    amount: user.role === "User" ? +tAmount : +data.amount,
+  };
+
   const debitOptions = {
     method: "PATCH",
     headers: {
@@ -73,6 +78,50 @@ const ConfirmationPage = () => {
       : `${baseUrl()}/transactions/debit-marchant-wallet?passcode=D*G-KaPdSgVkYp3s6v9y/B?E(HMbQeT&marchantId=${
           user.id
         }`;
+  const creditOptions = {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(creditAmountBody),
+  };
+
+  const fetchLink =
+    user.role === "User"
+      ? `${baseUrl()}/transactions/credit-user-wallet?passcode=D*G-KaPdSgVkYp3s6v9y/B?E(HMbQeT&userId=${
+          user.id
+        }`
+      : `${baseUrl()}/transactions/credit-marchant-wallet?passcode=D*G-KaPdSgVkYp3s6v9y/B?E(HMbQeT&marchantId=${
+          user.id
+        }`;
+
+  async function refundUser() {
+    const isTransactionSuccessful = await fetch(fetchLink, creditOptions);
+    if (!isTransactionSuccessful.ok) {
+      setMessage({
+        ...message,
+        err: "Your transaction wasn't successful and your funds couldn't be refunded. Please contact admin",
+      });
+      sendEmailToAdmin(
+        "A failed transaction happened and the user has been refunded. Details of transaction:",
+      );
+      setLoading(false);
+      return;
+    }
+    if (isTransactionSuccessful.ok) {
+      setMessage({
+        ...message,
+        success:
+          "Your transaction was not successful and you have been refunded",
+      });
+      sendEmailToAdmin(
+        "An error happened and the user was not refunded after a failed transaction. Details of transaction:",
+      );
+      setLoading(false);
+      return;
+    }
+  }
 
   const transferFunds = async () => {
     try {
@@ -98,19 +147,15 @@ const ConfirmationPage = () => {
           );
           const res = await executePayment.json();
           const sucessMessage = await res.message;
+          if (res.code !== "success") {
+            refundUser();
+            return;
+          }
           setMessage({ ...message, success: sucessMessage });
+          endSession();
         } catch (err) {
-          setLoading(false);
-          console.log(err.message);
-          setMessage({
-            ...message,
-            err: "Your airtime has not been credited because of Network issues. Contact support to be credited manually",
-          });
-          sendEmailToAdmin(
-            "The user has been debited but not credited. Details of transaction:",
-          );
+          console.log(err);
         }
-        endSession();
         return;
       }
       if (isTransactionSuccessful.ok && transactionPurpose === "data") {
@@ -124,19 +169,15 @@ const ConfirmationPage = () => {
           );
           const res = await executePayment.json();
           const sucessMessage = await res.message;
+          if (res.code !== "success") {
+            refundUser();
+            return;
+          }
           setMessage({ ...message, success: sucessMessage });
+          endSession();
         } catch (err) {
-          console.log(err.message);
-          setLoading(false);
-          setMessage({
-            ...message,
-            err: "Your data has not been credited because of Network issues. Contact support to be credited manually",
-          });
-          sendEmailToAdmin(
-            "The user has been debited but not credited. Details of transaction:",
-          );
+          console.log(err);
         }
-        endSession();
         return;
       }
       if (isTransactionSuccessful.ok && transactionPurpose === "tv") {
@@ -150,19 +191,15 @@ const ConfirmationPage = () => {
           );
           const res = await executePayment.json();
           const sucessMessage = await res.message;
+          if (res.code !== "success") {
+            refundUser();
+            return;
+          }
           setMessage({ ...message, success: sucessMessage });
+          endSession();
         } catch (err) {
-          console.log(err.message);
-          setLoading(false);
-          setMessage({
-            ...message,
-            err: "Your TV subscription has not been credited because of Network issues. Contact support to be credited manually",
-          });
-          sendEmailToAdmin(
-            "The user has been debited but not credited. Details of transaction:",
-          );
+          console.log(err);
         }
-        endSession();
         return;
       }
       if (isTransactionSuccessful.ok && transactionPurpose === "betting") {
@@ -194,9 +231,11 @@ const ConfirmationPage = () => {
   };
 
   function endSession() {
-    resetAllValues();
-    setLoading(false);
-    navigate("/", { replace: true });
+    setTimeout(() => {
+      resetAllValues();
+      setLoading(false);
+      navigate("/", { replace: true });
+    }, 4000);
   }
 
   async function sendEmailToAdmin(reason) {
@@ -213,11 +252,13 @@ const ConfirmationPage = () => {
   }
 
   return (
-    <div className="h-120 flex flex-col items-center gap-6 absolute top-28 left-80">
-      <p className="font-medium px-2 mb-5">
-        Click the button below to confirm your transaction of{" "}
-        <span className="font-bold text-black">{tAmount}</span> CIPIO
-      </p>
+    <div className="flex flex-col items-center gap-6 absolute bg-zinc-200 md:top-24 top-24 md:left-110 rounded-2xl p-10 w-screen md:w-auto">
+      {user.role === "User" && (
+        <p className="font-medium px-2 mb-5">
+          Click to confirm your transaction of{" "}
+          <span className="font-bold text-black">{tAmount}</span> CIPIO
+        </p>
+      )}
       <form onSubmit={sendEmail}>
         <Form className="select-none" />
         {loading || (

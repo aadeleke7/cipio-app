@@ -164,9 +164,9 @@ export default function PaymentPopUp() {
   }
 
   return (
-    <div className="flex flex-col gap-14 md:w-128 w-screen h-72 pt-10 px-5 z-10 absolute bg-zinc-200 md:top-24 top-16 md:left-110 rounded-2xl">
-      <div className="flex justify-center">
-        {account && <p>Your Connected Wallet Address:</p>}
+    <div className="flex flex-col gap-12 md:w-128 w-screen h-72 p-16 z-10 absolute bg-zinc-200 md:top-24 top-16 md:left-110 rounded-2xl">
+      <div className="flex justify-center items-center flex-col">
+        {account && <p>Wallet:</p>}
         {account || <Account className="text-black" />}
       </div>
       {account && (

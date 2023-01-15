@@ -42,6 +42,7 @@ import MarchantEnterEmail from "components/email-folder/marchant-enter-email";
 import UserForgotPassword from "components/email-folder/user-forgot-password";
 import MarchantForgotPassword from "components/email-folder/marchant-forgot-password";
 import TermsOfUse from "components/term-of-use/terms-of-use";
+import ContactUs from "components/contact-us/contact-us";
 
 window.onbeforeunload = function () {
   localStorage.removeItem("user");
@@ -155,6 +156,9 @@ const App = () => {
             </Route>
             <Route path="/terms-of-use">
               {userActive ? <Redirect to="/" /> : <TermsOfUse />}
+            </Route>
+            <Route path="/contact-us">
+              {!userActive ? <Redirect to="/" /> : <ContactUs />}
             </Route>
           </CompatRouter>
         </Router>

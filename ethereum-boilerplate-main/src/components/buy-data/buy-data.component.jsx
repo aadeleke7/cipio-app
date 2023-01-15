@@ -82,7 +82,7 @@ const BuyData = () => {
         >
           <option>Choose Network</option>
           <option value="MTN">MTN</option>
-          <option value="Airtel">Airtel</option>
+          {/* <option value="Airtel">Airtel</option> */}
           <option value="Glo">Glo</option>
           <option value="9Mobile">9Mobile</option>
         </select>
@@ -105,12 +105,12 @@ const BuyData = () => {
           <option
             value={
               optionsState.network === "MTN"
-                ? "500MB 30 Days,159,500"
+                ? "500MB 30 Days,149,500"
                 : optionsState.network === "Airtel"
-                ? "1GB 1 Day,299,airt-300x"
+                ? "1GB 1 Day,325,airt-330x"
                 : optionsState.network === "Glo"
                 ? "1.25GB 1 Day(Sunday),198,glo200x"
-                : "1GB 30 Days,989,9MOB1000"
+                : "1GB 30 Days,979,9MOB1000"
             }
           >
             {optionsState.network === "MTN"
@@ -124,18 +124,18 @@ const BuyData = () => {
           <option
             value={
               optionsState.network === "MTN"
-                ? "1GB 30 Days,289,M1024"
+                ? "1GB 30 Days,249,M1024"
                 : optionsState.network === "Airtel"
-                ? "2GB - 2 Days,499,airt-500x"
+                ? "1.5GB - 30 Days,1069,airt-1100"
                 : optionsState.network === "Glo"
-                ? "1GB 5 Nights,99,glo100x"
-                : "2.5GB - 30 Days,1989,9MOB34500"
+                ? "1GB 5 Nights,98,glo100x"
+                : "2.5GB - 30 Days,1979,9MOB34500"
             }
           >
             {optionsState.network === "MTN"
               ? "1GB - 30 Days"
               : optionsState.network === "Airtel"
-              ? "2GB - 2 Days"
+              ? "1.5GB - 30 Days"
               : optionsState.network === "Glo"
               ? "1GB - 5 Nights"
               : "2.5GB - 30 Days"}
@@ -143,18 +143,18 @@ const BuyData = () => {
           <option
             value={
               optionsState.network === "MTN"
-                ? "2GB - 30 Days,579,M2024"
+                ? "2GB - 30 Days,499,M2024"
                 : optionsState.network === "Airtel"
-                ? "6GB 7 Days,1489,airt-1500-2"
+                ? "2GB 30 Days,1279,airt-1300"
                 : optionsState.network === "Glo"
-                ? "1.35GB - 14 Days,489,G500"
-                : "11.5GB - 30 Days,7969,9MOB8000"
+                ? "1.35GB - 14 Days,485,G500"
+                : "11.5GB - 30 Days,7899,9MOB8000"
             }
           >
             {optionsState.network === "MTN"
               ? "2GB - 30 Days"
               : optionsState.network === "Airtel"
-              ? "6GB - 7 Days"
+              ? "2GB - 30 Days"
               : optionsState.network === "Glo"
               ? "1.35GB - 14 Days"
               : "11.5GB - 30 Days"}
@@ -162,117 +162,119 @@ const BuyData = () => {
           <option
             value={
               optionsState.network === "MTN"
-                ? "3GB - 30 Days,869,3000"
+                ? "3GB - 30 Days,749,3000"
                 : optionsState.network === "Airtel"
-                ? "750MB - 14 Days,499,airt-500"
+                ? "3GB - 30 Days,1629,airt-1650"
                 : optionsState.network === "Glo"
-                ? "2.9GB - 30 Days,979,G1000"
-                : "15GB - 30 Days,9899,9MOB5000"
+                ? "2.9GB - 30 Days,969,G1000"
+                : "15GB - 30 Days,9859,9MOB5000"
             }
           >
             {optionsState.network === "MTN"
               ? "3GB - 30 Days"
               : optionsState.network === "Airtel"
-              ? "750MB - 14 Days"
+              ? "30GB - 30 Days"
               : optionsState.network === "Glo"
               ? "2.9GB - 30 Days"
               : "15GB - 30 Days"}
           </option>
 
           {optionsState.network === "MTN" && (
-            <option value="5GB - 30 Days,1449,5000">5GB - 30 Days</option>
+            <option value="5GB - 30 Days,1249,5000">5GB - 30 Days</option>
           )}
 
           {optionsState.network === "MTN" && (
-            <option value="6GB - 7 Days,1499,mtn-20hrs-1500">
+            <option value="6GB - 7 Days,1489,mtn-20hrs-1500">
               6GB - 7 Days
             </option>
           )}
 
           {optionsState.network === "MTN" && (
-            <option value="10GB - 30 Days,2899,10000">10GB - 30 Days</option>
+            <option value="10GB - 30 Days,2499,10000">10GB - 30 Days</option>
           )}
 
           {optionsState.network === "MTN" && (
-            <option value="30GB - 30 Days,8000,mtn-30gb-8000">
+            <option value="30GB - 30 Days,7899,mtn-30gb-8000">
               30GB - 30 Days
             </option>
           )}
 
           {optionsState.network === "MTN" && (
-            <option value="40GB - 30 Days,9899,mtn-40gb-10000">
+            <option value="40GB - 30 Days,9859,mtn-40gb-10000">
               40GB - 30 Days
             </option>
           )}
 
           {optionsState.network === "MTN" && (
-            <option value="75GB - 30 Days,14979,mtn-75gb-15000">
+            <option value="75GB - 30 Days,14899,mtn-75gb-15000">
               75GB - 30 Days
             </option>
           )}
 
           {optionsState.network === "Airtel" && (
-            <option value="1.5GB - 30 Days,979,AIR1000">1.5GB - 30 Days</option>
-          )}
-
-          {optionsState.network === "Airtel" && (
-            <option value="2GB - 30 Days,1179,airt-1200">2GB - 30 Days</option>
-          )}
-
-          {optionsState.network === "Airtel" && (
-            <option value="3GB - 30 Days,1489,Air1500">3GB - 30 Days</option>
-          )}
-
-          {optionsState.network === "Airtel" && (
-            <option value="4.5GB - 30 Days,1949,AIR2000">
+            <option value="4.5GB - 30 Days,2179,airt-2200">
               4.5GB - 30 Days
             </option>
           )}
 
           {optionsState.network === "Airtel" && (
-            <option value="10GB - 30 Days,2959,Air3000">10GB - 30 Days</option>
+            <option value="10GB - 30 Days,3279,airt-3300">
+              10GB - 30 Days
+            </option>
           )}
 
           {optionsState.network === "Airtel" && (
-            <option value="20GB - 30 Days,4899,Air5000">20GB - 30 Days</option>
+            <option value="20GB - 30 Days,5479,airt-5500">
+              20GB - 30 Days
+            </option>
           )}
 
           {optionsState.network === "Airtel" && (
-            <option value="40GB - 30 Days,9799,Air100000">
+            <option value="40GB - 30 Days,10699,airt-11000">
               40GB - 30 Days
             </option>
           )}
 
-          {optionsState.network === "Glo" && (
-            <option value="5.8GB - 30 Days,1949,G2000">5.8GB - 30 Days</option>
+          {optionsState.network === "Airtel" && (
+            <option value="6GB - 7 Days,1629,airt-1650-2">6GB - 7 Days</option>
+          )}
+
+          {optionsState.network === "Airtel" && (
+            <option value="750MB - 14 Days,539,airt-550">
+              750MB - 14 Days
+            </option>
           )}
 
           {optionsState.network === "Glo" && (
-            <option value="7.7GB - 30 Days,2449,G2500">7.7GB - 30 Days</option>
+            <option value="5.8GB - 30 Days,1939,G2000">5.8GB - 30 Days</option>
           )}
 
           {optionsState.network === "Glo" && (
-            <option value="10GB - 30 Days,2949,G3000">10GB - 30 Days</option>
+            <option value="7.7GB - 30 Days,2439,G2500">7.7GB - 30 Days</option>
           )}
 
           {optionsState.network === "Glo" && (
-            <option value="13.25GB - 30 Days,3889,G4000">
+            <option value="10GB - 30 Days,2939,G3000">10GB - 30 Days</option>
+          )}
+
+          {optionsState.network === "Glo" && (
+            <option value="13.25GB - 30 Days,3879,G4000">
               13.25GB - 30 Days
             </option>
           )}
 
           {optionsState.network === "Glo" && (
-            <option value="18.25GB - 30-Days,4849,G5000">
+            <option value="18.25GB - 30-Days,4839,G5000">
               18.25GB - 30 Days
             </option>
           )}
 
           {optionsState.network === "Glo" && (
-            <option value="29.5GB 30 Days,7799,G8000">29.5GB - 30 Days</option>
+            <option value="29.5GB 30 Days,7779,G8000">29.5GB - 30 Days</option>
           )}
 
           {optionsState.network === "Glo" && (
-            <option value="50GB 30 Days,9899,glo10000">50GB 30 Days</option>
+            <option value="50GB 30 Days,9859,glo10000">50GB 30 Days</option>
           )}
         </select>
 

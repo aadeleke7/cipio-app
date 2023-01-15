@@ -154,6 +154,11 @@ export default function Dashboard() {
     setMainToggleToFalse();
   };
 
+  const navigateToContactUs = () => {
+    navigate("/contact-us", { replace: true });
+    setMainToggleToFalse();
+  };
+
   const logout = () => {
     setMainToggleToFalse();
     setSubMenuToFalse();
@@ -368,6 +373,7 @@ export default function Dashboard() {
                 <li className="flex justify-center">
                   <button
                     style={styling("/contact-us")}
+                    onClick={navigateToContactUs}
                     className="h-12 bg-zinc-300 w-full hover:border-l-2 hover:border-l-blue-800 text-blue-800 hover:bg-blue-200 font-bold"
                   >
                     CONTACT US
@@ -526,6 +532,7 @@ export default function Dashboard() {
                   <li className="flex justify-center">
                     <button
                       style={styling("/contact-us")}
+                      onClick={navigateToContactUs}
                       className="h-12 bg-zinc-300 w-full hover:border-l-2 hover:border-l-blue-800 text-blue-800 hover:bg-blue-200 font-bold"
                     >
                       CONTACT US

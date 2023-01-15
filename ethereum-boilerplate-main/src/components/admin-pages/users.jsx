@@ -115,6 +115,7 @@ export default function UsersPage() {
         <div className="flex flex-col gap-3">
           {allUsers
             .map((items) => <SingleUser key={items._id} singleUser={items} />)
+            .reverse()
             .slice(oldPageNum, newPageNum)}
         </div>
       )}

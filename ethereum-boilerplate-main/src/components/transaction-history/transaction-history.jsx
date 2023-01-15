@@ -66,6 +66,7 @@ export default function TransactionHistory() {
         <div className="flex flex-col gap-3">
           {transactions
             .map((items) => <SingleTransaction key={items._id} data={items} />)
+            .reverse()
             .slice(oldPageNum, newPageNum)}
         </div>
       )}

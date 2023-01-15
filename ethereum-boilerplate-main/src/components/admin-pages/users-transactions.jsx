@@ -167,6 +167,7 @@ export default function UsersTransactions() {
               .map((items) => (
                 <SingleUserTransaction key={items._id} data={items} />
               ))
+              .reverse()
               .slice(oldPageNum, newPageNum)}
           </div>
         )}

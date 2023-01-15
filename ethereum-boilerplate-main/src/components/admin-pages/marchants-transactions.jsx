@@ -165,6 +165,7 @@ export default function MarchantTransactions() {
               .map((items) => (
                 <SingleMarchantTransaction key={items._id} data={items} />
               ))
+              .reverse()
               .slice(oldPageNum, newPageNum)}
           </div>
         )}
